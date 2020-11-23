@@ -1,9 +1,11 @@
 const express=require('express');
 const router=express.Router();
-const {check,validationResult}=require('express-validator/check');
+const {check,validationResult}=require('express-validator');
 const User =require('../../models/Users');
 const gravatar=require('gravatar');
 const bcrypt=require('bcryptjs');
+const jwt=require('jsonwebtoken');
+const config=require('config');
 
 //@route POST api/users
 //@desc Register User
@@ -46,10 +48,25 @@ try{
     //Encrypt the password
 const salt= await bcrypt.genSalt(10);
 user.password=await bcrypt.hash(password,salt);
-
+// Saving user in DB
 await user.save();
+//Return jwt
+const payload= {
+    user:{
+        id:user.id
+    }
+}
+jwt.sign(
+    payload,
+    config.get('jwtSecret'),
+    {expiresIn:360000},
+    (err,token)=>{
+        if(err) throw err;
+        res.json({token});
 
-    res.send("User Registered");
+    }
+    );
+    
 }
 catch(err){
 console.error(err.message);
