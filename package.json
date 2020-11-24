@@ -4,8 +4,8 @@
   "description": "Social Networking",
   "main": "server.js",
   "scripts": {
-"start":"node server",
-"server":"nodemon server"
+    "start": "node server",
+    "server": "nodemon server"
   },
   "author": "Sahil Malhotra",
   "license": "UNLICENSED",
