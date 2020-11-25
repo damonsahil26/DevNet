@@ -71,8 +71,7 @@ const profileSchema=mongoose.Schema({
                 required:true
             },
             from:{
-                type:String,
-                required:true
+                type:String
             },
             to:{
                 type:String
