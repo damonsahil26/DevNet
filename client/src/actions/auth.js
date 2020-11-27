@@ -5,7 +5,8 @@ import {
     USER_LOADED,
     AUTH_ERROR,
     LOGIN_FAIL,
-    LOGIN_SUCCESS
+    LOGIN_SUCCESS,
+    LOGOUT
 } 
 from '../actions/types';
 import {setAlert} from './alert';
@@ -105,4 +106,11 @@ try {
     });
 }
      
+};
+
+//Logout / Clear Profile
+
+export const logout =()=> dispatch=>{
+
+    dispatch({type:LOGOUT});
 }
