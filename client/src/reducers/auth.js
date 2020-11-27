@@ -2,7 +2,11 @@
 /* eslint-disable import/no-anonymous-default-export */
 import {
     REGISTER_SUCCESS,
-    REGISTER_FAIL
+    REGISTER_FAIL,
+    AUTH_ERROR,
+    USER_LOADED,
+    LOGIN_FAIL,
+    LOGIN_SUCCESS
 } from '../actions/types';
 
 const initialState={
@@ -17,7 +21,9 @@ export default function(state=initialState,action){
 const {type,payload}=action;
 
 switch(type){
+    
 case REGISTER_SUCCESS:
+    case LOGIN_SUCCESS:
     localStorage.setItem('token',payload.token);
     return {
         ...state,
@@ -27,6 +33,8 @@ case REGISTER_SUCCESS:
     };
 
     case REGISTER_FAIL:
+        case AUTH_ERROR:
+            case LOGIN_FAIL:
         localStorage.removeItem('token');
         return {
             ...state,
@@ -34,6 +42,13 @@ case REGISTER_SUCCESS:
             isAuthenticated:false,
             loading:false
         };
+        case USER_LOADED:
+            return {
+                ...state,
+                isAuthenticated:true,
+                loading:false,
+                user:payload
+            }
 
     default:
     return state;
