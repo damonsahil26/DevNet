@@ -13,6 +13,7 @@ import Alert from './components/layout/Alert';
 import setAuthToken from './utils/setAuthToken';
 import {loadUser} from './actions/auth';
 import PrivateRoute from './components/routing/PrivateRoute';
+import CreateProfile from './components/create-profile/CreateProfile';
 
 if(localStorage.token){
   setAuthToken(localStorage.token);
@@ -35,6 +36,7 @@ store.dispatch(loadUser());
   <Route exact path='/register' component={Register}/>
   <Route exact path='/login' component={Login}/>
   <PrivateRoute exact path='/dashboard' component={Dashboard}/>
+  <PrivateRoute exact path='/create-profile' component={CreateProfile}/>
 
 
 </Switch>
