@@ -6,7 +6,8 @@ import {
     AUTH_ERROR,
     LOGIN_FAIL,
     LOGIN_SUCCESS,
-    LOGOUT
+    LOGOUT,
+    CLEAR_PROFILE
 } 
 from '../actions/types';
 import {setAlert} from './alert';
@@ -111,6 +112,6 @@ try {
 //Logout / Clear Profile
 
 export const logout =()=> dispatch=>{
-
+    dispatch({type:CLEAR_PROFILE});
     dispatch({type:LOGOUT});
 }
